@@ -1,0 +1,78 @@
+import math
+
+def calculator():
+    print("Advanced Calculator")
+    print("Operations:")
+    print(" +  : Addition")
+    print(" -  : Subtraction")
+    print(" *  : Multiplication")
+    print(" /  : Division")
+    print(" ^  : Exponentiation")
+    print(" sqrt: Square root (use one number)")
+    print(" log : Logarithm base 10 (use one number)")
+    print(" sin : Sine (degrees)")
+    print(" cos : Cosine (degrees)")
+    print(" tan : Tangent (degrees)")
+    print(" type 'exit' to quit")
+
+    while True:
+        op = input("\nEnter operation: ").lower()
+        if op == "exit":
+            print("Exiting calculator.")
+            break
+
+        if op in ['sqrt', 'log', 'sin', 'cos', 'tan']:
+            try:
+                num = float(input("Enter number: "))
+            except ValueError:
+                print("Invalid input! Please enter a number.")
+                continue
+
+            if op == "sqrt":
+                if num < 0:
+                    print("Cannot take square root of negative number!")
+                    continue
+                result = math.sqrt(num)
+            elif op == "log":
+                if num <= 0:
+                    print("Logarithm undefined for zero or negative numbers!")
+                    continue
+                result = math.log10(num)
+            elif op == "sin":
+                result = math.sin(math.radians(num))
+            elif op == "cos":
+                result = math.cos(math.radians(num))
+            elif op == "tan":
+                result = math.tan(math.radians(num))
+
+            print(f"Result: {result}")
+
+        elif op in ['+', '-', '*', '/', '^']:
+            try:
+                num1 = float(input("Enter first number: "))
+                num2 = float(input("Enter second number: "))
+            except ValueError:
+                print("Invalid input! Please enter numbers.")
+                continue
+
+            if op == '+':
+                result = num1 + num2
+            elif op == '-':
+                result = num1 - num2
+            elif op == '*':
+                result = num1 * num2
+            elif op == '/':
+                if num2 == 0:
+                    print("Division by zero error!")
+                    continue
+                result = num1 / num2
+            elif op == '^':
+                result = num1 ** num2
+
+            print(f"Result: {result}")
+
+        else:
+            print("Invalid operation! Please try again.")
+
+if __name__ == "__main__":
+    calculator()
